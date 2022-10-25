@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_boal2_applicatio.scriptsAndThings</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>scriptsAndThings</name>
+        <script><![CDATA[var scriptsAndThings = Class.create();
+scriptsAndThings.prototype = {
+    initialize: function() {
+    },
+	//features added
+    type: 'scriptsAndThings'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>zach.fanning</sys_created_by>
+        <sys_created_on>2022-10-25 15:04:17</sys_created_on>
+        <sys_id>73e270c51bba1150b1a3c88c0a4bcb03</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>scriptsAndThings</sys_name>
+        <sys_package display_value="Application CI/CD Demo" source="x_boal2_applicatio">82fcd4011bf21150b1a3c88c0a4bcb25</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Application CI/CD Demo">82fcd4011bf21150b1a3c88c0a4bcb25</sys_scope>
+        <sys_update_name>sys_script_include_73e270c51bba1150b1a3c88c0a4bcb03</sys_update_name>
+        <sys_updated_by>zach.fanning</sys_updated_by>
+        <sys_updated_on>2022-10-25 15:04:17</sys_updated_on>
+    </sys_script_include>
+</record_update>

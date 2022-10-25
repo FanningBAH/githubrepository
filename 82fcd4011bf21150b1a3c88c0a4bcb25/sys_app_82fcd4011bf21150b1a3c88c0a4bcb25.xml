@@ -22,22 +22,22 @@
         <scoped_administration>false</scoped_administration>
         <short_description/>
         <source>x_boal2_applicatio</source>
-        <store_correlation_id/>
+        <store_correlation_id>REPOAPP0000699567</store_correlation_id>
         <store_url/>
         <sys_class_name>sys_app</sys_class_name>
         <sys_code/>
         <sys_created_by>zach.fanning</sys_created_by>
         <sys_created_on>2022-10-25 13:27:23</sys_created_on>
         <sys_id>82fcd4011bf21150b1a3c88c0a4bcb25</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_updated_by>zach.fanning</sys_updated_by>
-        <sys_updated_on>2022-10-25 15:42:49</sys_updated_on>
+        <sys_updated_on>2022-10-25 17:16:38</sys_updated_on>
         <template/>
         <trackable>true</trackable>
         <uninstall_blocked>false</uninstall_blocked>
         <user_role/>
         <vendor/>
         <vendor_prefix/>
-        <version>1.1.2</version>
+        <version>1.1.6</version>
     </sys_app>
 </record_update>

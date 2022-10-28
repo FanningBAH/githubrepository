@@ -1,5 +1,4 @@
-name: ServiceNow GitHub Actions Demo
-#trigger build
+name: pipeline
 on:
   pull_request:
   push:

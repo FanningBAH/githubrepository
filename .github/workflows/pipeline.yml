@@ -114,7 +114,7 @@ jobs:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
       - name: bob
-        run: echo ${{ format('orchestrationTaskURL:https://github.com/{0}/actions/runs/{1}/jobs/{2}; callbackURL:{3}', github.action_repository, github.run_id, job.container.id, '')
+        run: echo ${{ format('orchestrationTaskURL:https://github.com/{0}/actions/runs/{1}/jobs/{2}; callbackURL:{3}', github.action_repository, github.run_id, job.container.id, '') }}
       - name: ServiceNow DevOps Change Automation
         uses: ServiceNow/servicenow-devops-change@v1.35.2
         with:

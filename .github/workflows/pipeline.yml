@@ -105,35 +105,14 @@ jobs:
     outputs:
       publishversion: ${{ needs.build.outputs.publishversion }}
 
-  createchange:
-    name: Create Change
-    needs: test
-    environment: Test Env
-    runs-on: ubuntu-latest 
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-    steps:
-      - name: Log orchestrationTaskURL
-        run: echo ${{ format('orchestrationTaskURL:https://github.com/{0}/actions/runs/{1}', github.action_repository, github.run_id) }}
-      - name: ServiceNow DevOps Change Automation
-        uses: ServiceNow/servicenow-devops-change@v1.35.2
-        with:
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          instance-url: ${{ secrets.SN_INSTANCE_URL_PROD }}
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          context-github: ${{ toJSON(github) }}
-          job-name: 'Create Change Job'
-          change-request: '{"setCloseCode":"true","attributes":{"short_description":"Automated Software Deployment","description":"Automated Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab; When the change is approved the implementation happens automated by the CICD pipeline within the change planned start and end time window.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'          
-          interval: '100'
-          timeout: '3600'
-
   deployprod:
     # Purpose of this job is to Install App to a Prod instance. This should only 
     # trigger if the feature branch has been merged to master after a successfully 
     # completed pull request, hence the conditional for push to master. In other words,
     # the first two jobs run on CI, then all three jobs run on CD.
     name: Deploy to Prod
-    needs: createchange
+    needs: test
+    #createchange
     environment: Test Env
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}

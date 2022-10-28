@@ -12,6 +12,7 @@ jobs:
     # the pipeline build to the Dev instance, then publish the application to 
     # app repo using the template versioning format. 
     name: Publish from Dev
+    environment: Test Env
     runs-on: ubuntu-latest
     # Below line can be used to set conditionals for modifying your pipeline as needed.
     # if: ${{ github.event_name == 'pull_request'}}
@@ -52,14 +53,14 @@ jobs:
     # published in the build job to a Test instance, then run an ATF Test Suite 
     # associated with the app. If Test Suite fails, the app should be Rolled Back 
     # to clean up the persistent Test environment. 
-    needs: build
     name: Run ATF in Test
+    needs: build
+    environment: Test Env
     runs-on: ubuntu-latest
     # Below line can be used to set conditionals for modifying your pipeline as needed.
     # if: ${{ github.event_name == 'pull_request'}}
     
     steps:
-
       - name: ServiceNow CI/CD Install App
         id: install_app
         uses: ServiceNow/sncicd-install-app@2.0.0
@@ -107,8 +108,9 @@ jobs:
 
   createchange:
     name: Create Change
-    runs-on: ubuntu-latest
     needs: test
+    environment: Test Env
+    runs-on: ubuntu-latest 
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
       - name: ServiceNow DevOps Change Automation
@@ -129,9 +131,10 @@ jobs:
     # Purpose of this job is to Install App to a Prod instance. This should only 
     # trigger if the feature branch has been merged to master after a successfully 
     # completed pull request, hence the conditional for push to master. In other words,
-    # the first two jobs run on CI, then all three jobs run on CD. 
-    needs: createchange
+    # the first two jobs run on CI, then all three jobs run on CD.
     name: Deploy to Prod
+    needs: createchange
+    environment: Test Env
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:

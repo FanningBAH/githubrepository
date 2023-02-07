@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-#trigger rebuild2
+#trigger rebuild
 jobs:
   build:
     # Purpose of this job is to Apply Remote Changes for the branch triggering 
